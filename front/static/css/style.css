@@ -144,12 +144,13 @@ display: block;
     text-align: center;
     padding: 100px 20px;
     color: #fff;
-    height: 70vh;
+    height: 70vh; 
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative; /* Asegura que respete el z-index de otros elementos */
     z-index: 0; /* Coloca el fondo detrás del menú */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); 
   }
 
 .main-section {
@@ -201,10 +202,15 @@ display: block;
     background-color:rgb(255, 255, 255);
     color: blue;
 }
+
+.separator {
+height: 10px;
+background: rgba(26, 59, 26, 0.76)
+}
 /* ------------------------PARTE DE LOS PRODUCTOS--------------- */
 .products-section {
     padding: 60px 20px;
-    background-image: url('../img/fondo.jpg');
+    background-image: url('https://static.vecteezy.com/system/resources/previews/003/498/690/non_2x/wood-texture-background-wood-planks-or-wood-wall-free-photo.jpg');
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat;
@@ -212,9 +218,12 @@ display: block;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 20px;
+    box-shadow: inset 0 0 20px rgb(0, 0, 0);
 }
+
 .section-title {
-    font-size: 2rem;
+    font-size: 30px;
     margin-bottom: 40px;
     color: #7d806c;
     background-color: rgb(170, 165, 110);
@@ -227,17 +236,20 @@ display: block;
     justify-content: center;
 }
 .product-item {
-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
 border-radius: 8px; 
 overflow: hidden; 
-background-color: #fff; 
+background-color: rgba(255, 255, 255, 0.9);
 text-align: center; 
 padding: 15px; 
 transition: transform 0.3s; /* Animación al pasar el cursor */
+margin: 10px;
+padding: 15px;
 }
 
 .product-item:hover {
-transform: scale(1.05); /* Efecto de zoom al pasar el cursor */
+/* transform: scale(1.05); Efecto de zoom al pasar el cursor */
+transform: translateY(-5px);/*levanta un poco  */
 }
 
 .product-item img {
@@ -301,9 +313,11 @@ background-color: #ffffff;
 /* ------------------------PARTE DE LA UBICACIÓN--------------- */
 .maps-section {
     position: relative; /* Posición relativa para que los elementos internos se posicionen adecuadamente */
-    padding: 40px 120px;
+    padding: 40px 5%;
     overflow: hidden; /* Asegura que no haya desbordes del fondo */
+    margin: 0 auto; 
 }
+
 
 .background-blur {
 position: absolute;
@@ -311,7 +325,7 @@ top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-background-image: url(/img/division.jpg);
+background-image: url(../img/division.jpg);
 background-size: cover; /* Ajusta la imagen al tamaño del contenedor */
 background-position: center;
 filter: blur(10px); /* Aplica el desenfoque */
@@ -453,9 +467,9 @@ font-size: 0.8rem;
 .footer-links {
 display: flex;
 justify-content: center; /* Centra los enlaces */
-gap: 20px; /* Espaciado entre los enlaces */
+gap: 51px; /* Espaciado entre los enlaces */
 flex-wrap: wrap; /* Permite que los enlaces se ajusten en pantallas pequeñas */
-padding: 30px;
+padding: 20px;
 }
 
 .footer-links a {
@@ -512,7 +526,20 @@ text-decoration: underline;
     text-transform: uppercase;
     color: blue;
 }
-/***************************MEDIAQUERIES 900PX******************************/
+
+/*** MEDIAQUERIES 1200px ***/
+@media (max-width: 1200px) {
+
+    .titulo-maps{
+        width: 540px;
+        font-size: 45px;
+    }
+    .mapa-container iframe {
+        max-width: 550px;
+        }
+
+}
+/***************************MEDIAQUERIES 900PX******************************(RARO la ubicación)/
 /* ! tablets */
 
 @media (max-width: 900px) {
@@ -525,20 +552,20 @@ text-decoration: underline;
     }
     .titulo-maps{
         width: 300px;
-        font-size: 50px;
+        font-size: 40px;
     }
 
     .mapa-container iframe {
-        max-width: 400px;
+        max-width: 450px;
         }
 
 .info-container {
     display: none;
     }
 
-    .footer-links a {
-        font-size: 4rem;
-        }
+     .footer-links a {
+        font-size: 25px;
+        } 
 
         .in-links{
             display: none;
@@ -552,8 +579,15 @@ text-decoration: underline;
             margin: 0 auto;
             }
 
+        .footer-division{
+        display: none;
+    }
+    .contacto-datos{
+        display:none;
+    }
+
 }
-/***************************MEDIAQUERIES 768PX******************************/
+/***************************MEDIAQUERIES 768PX******************************(lo único, los productos quedan raros)/
 /* ! celulares */
 @media (max-width: 768px) {
 
@@ -569,7 +603,7 @@ text-decoration: underline;
     max-height: 300px;
     }
     .maps-wrapper{
-        min-width: 400px;
+        min-width: 330px;/*mapa cuanto se achica*/
     }
 
 .maps-content{
@@ -605,6 +639,19 @@ text-decoration: underline;
     .contacto-datos{
         display: none;
     }
+
+    .footer-links a {
+        font-size: 2rem;
+        } 
+    
+    .product-item{
+        margin:5px;
+    }
+
+
+.maps-section {
+padding: 20px 5%; 
+}
 
 
 }

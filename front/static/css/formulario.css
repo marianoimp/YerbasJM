@@ -15,7 +15,7 @@ body {
     background-color: #008036;
     z-index: 10; /* Prioridad más alta */
   }
-  .p-title {
+  /* .p-title {
     text-decoration: none;
     padding: 2px;
     text-transform: uppercase;
@@ -25,8 +25,13 @@ body {
     font-weight: 700;
     letter-spacing: 8px;
     color: #ffffff;
-  
-  }
+
+  } */
+   .logo img{
+    border-radius: 50%;
+    width:  70px;
+    height: 70px;
+}
 
   .contact-container {
     max-width: 900px;
