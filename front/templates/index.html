@@ -11,9 +11,9 @@
       <!-- titulo de la pagina -->
       <title>YerbasJM</title>
       <!-- conectar mi css a mi pagina -->
-      <link rel="stylesheet" href="css/style.css" />
+      <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}" />
       <!-- logo de la pagina  -->
-      <link rel="icon" href="img/Logojm.jpg" sizes="192x192" />
+      <link rel="icon" href="{{url_for('static',filename='img/Logojm.jpg')}}" sizes="192x192" />
       <!-- referencias para google fonts -->
       <link href="https://fonts.googleapis.com/css2?family=Rubik+Vinyl&display=swap" rel="stylesheet">
       <link
@@ -41,7 +41,7 @@
       />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">  
     <!-- javascript -->
-      <script src="js/script.js"> </script>
+      <script src="{{url_for('static',filename='js/script.js')}}"> </script>
     </section>
   </head>
 
@@ -50,45 +50,64 @@
   <!-- Un solo contenedor para el menú -->
   <section class="menu-container">
 
-    <!-- Menú -->
-    <ul class="menu">
-      <li>
-        <a href="#"><div class="logo">
-            <img src="img/Logojm.jpg" alt="Logo de la página YerbasJM"></div></a>
-        <!-- Submenú -->
-        <ul class="submenu">
-          <li><a class="boton" href="#pag-inicio"><i class="fa-solid fa-house"></i>|Inicio</a></li>
-          <li><a class="boton" href="#productos"><i class="fa-solid fa-bars-staggered"></i>|Productos</a></li>
-          <li><a class="boton" href="#maps"><i class="fa-solid fa-map-location-dot"></i>|Ubicación</a></li>
-          <li><a class="boton" href="#redes"><i class="fa-solid fa-globe"></i>|Redes</a></li>
-        </ul>
-      </li>
-    </ul>
+      <!-- Menú -->
+      <ul class="menu">
+        <li>
+          <a href="{{url_for('home')}}"><div class="logo">
+              <img src="{{url_for('static',filename='img/Logojm.jpg')}}" alt="Logo de la página YerbasJM"></div></a>
+          <!-- Submenú -->
+          <ul class="submenu">
+            <li><a class="boton" href="#pag-inicio"><i class="fa-solid fa-house"></i>|Inicio</a></li>
+            <li><a class="boton" href="#productos"><i class="fa-solid fa-bars-staggered"></i>|Productos</a></li>
+            <li><a class="boton" href="#maps"><i class="fa-solid fa-map-location-dot"></i>|Ubicación</a></li>
+            <li><a class="boton" href="#redes"><i class="fa-solid fa-globe"></i>|Redes</a></li>
+          </ul>
+        </li>
+      </ul>
 
-          <!-- título -->
-        <div class="title">
-          <a class="atitle" href="">
-            <h2 class="ptitle">YerbasJM</h2>
-          </a>
-        </div>
+            <!-- título -->
+          <div class="title">
+            <a class="atitle" href="">
+              <h2 class="ptitle">{{ info.titulo }}</h2>
+            </a>
+          </div>
   </section>
-</header>
-    </header>
+  </header>
 
     <!-- presentacion-->
     <section id="pag-inicio" class="main-section">
       <div class="main-content">
-        <h1 class="titulo-in">Bienvenidos a YerbasJM</h1>
+        <h1 class="titulo-in">Bienvenidos a {{ info.titulo }}</h1>
         <p class="text-in">
-          HOla somos una empresa encargada en la venta de artículos provenientes del país.Podés mirar nuestros productos apretando el botón.
+          {{info.descripcion}}
         </p>
       <div id="pcts">
-        <a href="#" class="btn-pcts" id="mostrar" onclick="mostrarProductos()">Mostrar productos</a></div>
-        <a href="/html/formulario.html" class="btn-ct">contacto</a>
+        <a href="#" class="btn-pcts" id="mostrar" onclick="mostrarProductos()">Mostrar {{info.productos}}</a></div>
+        <a href="{{url_for('formulario')}}" class="btn-ct">contacto</a>
       </div>
     </section>
-  
+  <section class="separator"></section>
     <!-- Productos -->
+
+<!-- <h1>Valores del diccionario</h1>
+    <ul>
+        {% for clave, valor in info.items() %}
+            {% if valor == "YERBASJM" %}
+                <li>{{ clave }}: {{ valor }} ✅</li>
+            {% else %}
+                <li>{{ clave }}: {{ valor }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+       <h1>Claves del diccionario:</h1>
+    <ul>
+        {# Iterar sobre las claves del diccionario usando Jinja2 #}
+        {% for clave in info.keys() %}
+            <li>{{ clave }}</li>
+        {% endfor %}
+    </ul> -->
+
     <section id="productos" class="products-section">
       <h2 class="section-title">Nuestros Productos</h2>
       <div class="product-grid" id="text-pcts">
@@ -161,7 +180,7 @@
         </div>
       </div>
     </section>
-
+<section class="separator"></section>
     <!-- Mapa y Descripción -->
     <section id="maps" class="maps-section">
       <!-- Fondo desenfocado -->
@@ -176,59 +195,9 @@
           <!-- Mapa de Google -->
           <div class="mapa-container">
             <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6566.941604159374!2d-58.437872!3d-34.617541!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccbb7f786e557%3A0xc11c271802293de7!2syerbasjm!5e0!3m2!1ses!2sar!4v1735186032281!5m2!1ses!2sar" 
-              width="700" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              width="1000" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
           
-          <!-- Información y video al lado del mapa -->
-          <div class="info-container">
-            
-      <!-- Video con overlay -->
-            <div class="video-container">
-                        <video autoplay muted loop class="bg-video">
-                          <source src="/img/video yerbasjm.mp4" type="video/mp4">
-                          Tu navegador no soporta la etiqueta de video.
-                        </video>
-                        <div class="overlay"></div>
-                      </div>
-            <!-- Texto descriptivo -->
-            <div class="info-maps">
-              <p class="informacion-local">
-              <span class="texto-centrado"> <strong>🌟 La Mejor Tienda de Yerbas, Mates, Termos y Accesorios 🌟</strong> <br></span>
-
-              <span class="texto-justificado"> Si sos amante del mate, no busques más. Estamos ubicados a una cuadra de Av.Rivadavia contamos con gran varidead de yerbas, mates, 
-                termos y todos los accesorios que necesitas para disfrutar del mejor mate. Acercate al local para poder mirar la calidad de nuestros productos antes de comprarlos.
-              </span>
-              <span class="texto-centrado"> <strong>¿Por qué somos la mejor opción?</strong></span>
-                
-              <span class="texto-justificado"> <strong>Variedad y Calidad:</strong> Contamos con una amplia selección de yerbas de distintas marcas y tipos, mates artesanales y modernos, termos de alta eficiencia y los mejores accesorios para preparar y disfrutar de tu mate. <br>
-                
-          <strong>Experiencia y Conocimiento:</strong> Nuestro equipo está compuesto por expertos en mate que están siempre listos para asesorarte y ayudarte a elegir los productos que mejor se adapten a tus gustos y necesidades. <br>
-                
-            <strong>Atención Personalizada:</strong> Ofrecemos un servicio al cliente, tanto online como en nuestra tienda física.</span>
-                
-            <span class="texto-centrado"> <strong>📍 Visítanos en Nuestro Local:</strong></span>
-                
-            <span class="texto-horarios">   YERBAL 466, CABALLITO, CABA Argentina 
-              Horarios de atención:
-                
-                Lunes a Viernes: 15:00 - 18:00
-                
-                Sábados: 10:00 - 17:00
-                
-                Domingos y Feriados: Cerrado</span>
-                
-                <span class="texto-centrado"> <strong>🚚 Formas de Entrega ( TRBAJAMOS CON <a class="mercado-libre-link" href="https://yerbasjm.mercadoshops.com.ar/?">MERCADO LIBRE</a> Y <a class="sean-unidos-link" href="https://seanunidos.com/">SeanUnidos</a>):</strong></span>
-                
-                <span class="texto-justificado"> Envío a Domicilio: Recibe tus productos en la comodidad de tu hogar. Realizamos entregas en todo el país con distintos plazos y costos según tu ubicación.
-                
-                Retiro en Tienda: Puedes realizar tu compra online y retirar tus productos en nuestro local físico sin costo adicional.
-                
-                Entregas Flex: Para aquellos que no pueden esperar, ofrecemos una opción de entrega rápida en el día dentro de la ciudad de Buenos Aires.
-                </span>
-              </p>
-            </div>
-            
-          </div>
         </div>
       </div>
     </section>
@@ -254,15 +223,13 @@
             <img src="https://dk0k1i3js6c49.cloudfront.net/iconos-pago/naranja.png" class="footer-items" alt="Medio Pago"> 
             <img src="https://dk0k1i3js6c49.cloudfront.net/iconos-pago/cabal.png" class="footer-items" alt="Medio Pago"> 
             <img src="https://dk0k1i3js6c49.cloudfront.net/iconos-pago/maestro.png" class="footer-items" alt="Medio Pago"> 
-            <img src="https://dk0k1i3js6c49.cloudfront.net/iconos-pago/uala.png" class="footer-items" alt="Medio Pago"> 
             <img src="https://dk0k1i3js6c49.cloudfront.net/iconos-pago/acordar.png" class="footer-items" alt="Medio Pago"> 
         </div>
         <div class="contacto-datos">
           <p class="datos">
            <span class="t-dtos"> Datos de Contacto</span><br>
-            +54 9 1150631470 Juan pablo<br>
-            +54 9 1122445231 Mariano<br>
-            jpjodar74@gmail.com
+            <a href="https://wa.me/1150631470?text=Hola,%20quiero%20hacer%20una%20compra"><i class="fa-solid fa-phone"></i> : +54 9 1150631470</a><br>
+            <i class="fa-solid fa-envelope"></i> : jpjodar74@gmail.com
           </p>
         </div>
         <div class="footer-links">
@@ -281,7 +248,7 @@
       </div>    
       
       <div class="footer-info">
-        <p>&copy; 2024 YerbasJM | Todos los derechos reservados</p>
+        <p>&copy; YerbasJM | Todos los derechos reservados</p>
       </div>
     </footer>
   </body>
