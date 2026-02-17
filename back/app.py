@@ -7,5 +7,5 @@ CORS(app)
 
 app.register_blueprint(productos_bp, url_prefix="/productos")
 
-if __name__=="__name__":
+if __name__=="__main__":
     app.run(port=5053,debug=True)
