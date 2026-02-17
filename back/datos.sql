@@ -9,18 +9,13 @@ CREATE TABLE productos (
     stock INT DEFAULT 5
 );
 
-INSERT INTO productos(nombre,precio) VALUES('TERMOS', 5000);
-
-
 CREATE TABLE usuarios (
-    id_usuarios INT PRIMARY KEY AUTOINCREMENT,
+    id INT AUTO_INCREMENT PRIMARY KEY ,
     nombre VARCHAR(100),
     email VARCHAR(100) UNIQUE,
     password VARCHAR(250)
 
 );
-
-INSERT INTO usuarios (nombre,email,password) VALUES ('Juan','jp@gmail.com','1234');
 
 CREATE TABLE carrito (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -30,3 +25,6 @@ CREATE TABLE carrito (
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
     FOREIGN KEY (producto_id) REFERENCES productos(id)
 );
+
+INSERT INTO productos(nombre,precio) VALUES('TERMOS', 5000);
+INSERT INTO usuarios (nombre,email,password) VALUES ('Juan','jp@gmail.com','1234');
