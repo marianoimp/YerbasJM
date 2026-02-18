@@ -14,4 +14,4 @@ def obtener_productos():
     cursor.close()
     conn.close()
 
-    return jsonify(productos)
+    return jsonify(productos),200

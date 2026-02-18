@@ -87,6 +87,8 @@
       </div>
     </section>
   <section class="separator"></section>
+
+
     <!-- Productos -->
 
 <!-- <h1>Valores del diccionario</h1>
@@ -119,15 +121,18 @@
           <a href="#" class="btn-vermas" id="mostrar-yerbas"  onclick="mostrarMasYerbas()">Ver Más</a>
         </div>
         <!-- Producto 2 -->
-        <div class="product-item">
-          <img src="img/bala 1lt.webp" alt="Venta de Termos" />
-          <h3>Venta de Termos</h3>
+        
+        {% for categoria in categorias %}
+         <div class="product-item">
+          <!-- <img src="{{url_for('static', filename='img/bala 1lt.webp')}}" alt="Termo Balita" /> -->
+          <h3>{{ categorias.nombre }}</h3>
           <p>
-            Termos elegantes y duraderos para mantener tus bebidas a la
-            temperatura ideal.
+            {{ categorias.descripcion }}
           </p>
-          <a href="#" class="btn-vermas" id="mostrar-termos"  onclick="mostrarMasTermos()">Ver mss</a>
+          <a href="/categoria/{{ categoria.id }}" class="btn-vermas" id="mostrar-termos"  onclick="mostrarMasTermos()">Ver mss</a>
         </div>
+        {% endfor %}
+          
         <!-- Producto 3 -->
         <div class="product-item">
           <img src="img/matesyyerberos.png" alt="Venta de Mates y Yerberos" />

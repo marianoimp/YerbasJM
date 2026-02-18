@@ -5,8 +5,11 @@ USE Yerbas;
 CREATE TABLE productos (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nombre VARCHAR(100),
+    descripción TEXT(200),
     precio INT,
-    stock INT DEFAULT 5
+    stock INT DEFAULT 5,
+    categoria_id INT,
+    FOREIGN (categoria_id) REFERENCES categorias(id)
 );
 
 CREATE TABLE usuarios (
@@ -26,5 +29,11 @@ CREATE TABLE carrito (
     FOREIGN KEY (producto_id) REFERENCES productos(id)
 );
 
-INSERT INTO productos(nombre,precio) VALUES('TERMOS', 5000);
+CREATE TABLE categorias(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) UNIQUE,
+    descripcion TEXT(200)
+)
+
+INSERT INTO categorias(nombre,descripcion) VALUES('TERMOS', 'Termos elegantes y duraderos para mantener tus bebidas a la temperatura ideal');
 INSERT INTO usuarios (nombre,email,password) VALUES ('Juan','jp@gmail.com','1234');
