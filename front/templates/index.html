@@ -125,9 +125,9 @@
         {% for categoria in categorias %}
          <div class="product-item">
           <!-- <img src="{{url_for('static', filename='img/bala 1lt.webp')}}" alt="Termo Balita" /> -->
-          <h3>{{ categorias.nombre }}</h3>
+          <h3>{{ categoria.nombre }}</h3>
           <p>
-            {{ categorias.descripcion }}
+            {{ categoria.descripcion }}
           </p>
           <a href="/categoria/{{ categoria.id }}" class="btn-vermas" id="mostrar-termos"  onclick="mostrarMasTermos()">Ver mss</a>
         </div>

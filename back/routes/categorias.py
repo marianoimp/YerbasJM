@@ -16,11 +16,35 @@ def obtener_categorias():
 
     return jsonify(categorias),200
 
-@categorias_bp.route('/<int:id_usuario/categorias',methods=['POST'])
-def agregar_categorias(id_usuario):
+
+
+@categorias_bp.route('/<int:id>', methods=['GET'])
+def obtener_categoria(id):
     conn = conectarse_db()
     cursor = conn.cursor(dictionary=True)
 
-    data = request.json()
-    id_producto = data.get("id_producto")
+    cursor.execute('SELECT * FROM categorias WHERE id = %s',(id,))
+    categoria = cursor.fetchone()
+
+    if not categoria:
+        cursor.close()
+        conn.close()
+        return jsonify({"ERROR": "Categoria no encontrada"}), 404
+
+    cursor.execute('SELECT * FROM productos WHERE categoria_id = %s',(id,))
+    productos = cursor.fetchall()
+
+
+    cursor.close()
+    conn.close()
+    return jsonify({"categoria":categoria, "productos":productos})
+    
+
+# @categorias_bp.route('/<int:id_usuario/categorias',methods=['POST'])
+# def agregar_categorias(id_usuario):
+#     conn = conectarse_db()
+#     cursor = conn.cursor(dictionary=True)
+
+#     data = request.json()
+#     id_producto = data.get("id_producto")
     

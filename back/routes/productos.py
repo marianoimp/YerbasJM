@@ -15,3 +15,4 @@ def obtener_productos():
     conn.close()
 
     return jsonify(productos),200
+
