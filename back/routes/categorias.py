@@ -23,21 +23,23 @@ def obtener_categoria(id):
     conn = conectarse_db()
     cursor = conn.cursor(dictionary=True)
 
-    cursor.execute('SELECT * FROM categorias WHERE id = %s',(id,))
-    categoria = cursor.fetchone()
+    cursor.execute('''
+        SELECT nombre, precio, descripcion, stock
+                   FROM productos 
+                   LEFT JOIN categorias 
+                   ON categorias.id = productos.categoria_id 
+                   WHERE categoria.id = %s
+        ''',(id,))
+    p_categoria = cursor.fetchall()
 
-    if not categoria:
+    if not p_categoria:
         cursor.close()
         conn.close()
-        return jsonify({"ERROR": "Categoria no encontrada"}), 404
-
-    cursor.execute('SELECT * FROM productos WHERE categoria_id = %s',(id,))
-    productos = cursor.fetchall()
-
+        return jsonify({"ERROR": "No hay productos"}), 404
 
     cursor.close()
     conn.close()
-    return jsonify({"categoria":categoria, "productos":productos})
+    return jsonify(p_categoria),200
     
 
 # @categorias_bp.route('/<int:id_usuario/categorias',methods=['POST'])
